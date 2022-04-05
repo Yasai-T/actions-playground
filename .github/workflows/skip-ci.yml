@@ -2,9 +2,6 @@ name: 'test'
 
 on: push
 
-env:
-  RUN: (GITHUB_REF_NAME == 'main') || env.GIT_DIFF
-
 # List of jobs
 jobs:
   run-test:
@@ -19,4 +16,4 @@ jobs:
           PATTERNS: README.md
       - name: hello
         run: echo "hello"
-        if: env.RUN
+        if: (GITHUB_REF_NAME == 'main') || env.GIT_DIFF
