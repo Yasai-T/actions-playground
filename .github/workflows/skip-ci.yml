@@ -16,4 +16,4 @@ jobs:
           PATTERNS: README.md
       - name: hello
         run: echo "hello"
-        if: (env.GITHUB_REF_NAME == 'main') || env.GIT_DIFF
+        if: env.GIT_DIFF
