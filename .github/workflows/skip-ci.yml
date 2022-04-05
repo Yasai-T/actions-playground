@@ -2,12 +2,9 @@ name: 'test'
 
 on: push
 
-env:
-  RUN_CHROMATIC: (GITHUB_REF_NAME == 'main') || env.GIT_DIFF
-
 # List of jobs
 jobs:
-  chromatic-deployment:
+  run-test:
     # Operating System
     runs-on: ubuntu-latest
     # Job steps
@@ -19,4 +16,4 @@ jobs:
           PATTERNS: README.md
       - name: hello
         run: echo "hello"
-        if: env.RUN_CHROMATIC
+        if: (env.GITHUB_REF_NAME == 'main') || env.GIT_DIFF
