@@ -1,0 +1,22 @@
+name: 'test'
+
+on: push
+
+env:
+  RUN_CHROMATIC: (GITHUB_REF_NAME == 'main') || env.GIT_DIFF
+
+# List of jobs
+jobs:
+  chromatic-deployment:
+    # Operating System
+    runs-on: ubuntu-latest
+    # Job steps
+    steps:
+      - uses: actions/checkout@v1
+      # Skip if there is no difference in snapshots
+      - uses: technote-space/get-diff-action@v6
+        with:
+          PATTERNS: README.md
+      - name: hello
+        run: echo "hello"
+        if: env.RUN_CHROMATIC
